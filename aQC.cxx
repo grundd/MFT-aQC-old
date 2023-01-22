@@ -123,6 +123,7 @@ void aQC(string sIn)
     string pass;
     std::vector<int>* runList = ReadInput(sIn,period,pass);
     int nRuns = runList->size();
-    for(int i = 0; i < 1; i++) SaveHistos(period.data(),runList->at(i),pass.data());
+    for(int i = 0; i < nRuns; i++) SaveHistos(period.data(),runList->at(i),"apass1");
+    for(int i = 0; i < nRuns; i++) SaveHistos(period.data(),runList->at(i),"apass2");
     return;
 }
