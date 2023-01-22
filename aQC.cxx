@@ -57,9 +57,9 @@ string RenameHisto(string oldName)
 
 void SaveHistos(string period, int runNo, string pass)
 {
-    gSystem->Exec(Form("mkdir -p Results/runsRootFiles/%s/",period.data()));
+    gSystem->Exec(Form("mkdir -p Results/%s/runsRootFiles/",period.data()));
     // check if the file already exists
-    string sFile = Form("Results/runsRootFiles/%s/%i_%s.root",period.data(),runNo,pass.data());
+    string sFile = Form("Results/%s/runsRootFiles/%i_%s.root",period.data(),runNo,pass.data());
     bool fileExists = !gSystem->AccessPathName(sFile.data());
     if(fileExists && !rewriteAll) {
         cout << sFile << " already exists and won't be recreacted. Skipping...\n";

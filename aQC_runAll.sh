@@ -22,11 +22,27 @@ while read line; do
     if (( $n > 3 )) ; then
         run=$line
         echo "run: $run"
-        papermill -p _period $period -p _run $run notebook_aQC_singlePass.ipynb MFTaQC_${run}_${pass}.ipynb
-        jupyter nbconvert --to html MFTaQC_${run}_${pass}.ipynb --no-input
-        rm -r MFTaQC_${run}_${pass}.ipynb
-        mkdir -p Results/notebook_singlePass/${period}/
-        mv MFTaQC_${run}_${pass}.html Results/notebook_singlePass/${period}/${run}_${pass}.html
+        # single pass run statistics
+        mkdir -p Results/${period}/notebook_singlePass/
+        # apass1
+        file_p1=MFTaQC_${run}_apass1
+        papermill -p _period $period -p _run $run -p _pass apass1 notebook_aQC_singlePass.ipynb ${file_p1}.ipynb
+        jupyter nbconvert --to html ${file_p1}.ipynb --no-input
+        rm -r ${file_p1}.ipynb
+        mv ${file_p1}.html Results/${period}/notebook_singlePass/${run}_apass1.html
+        # apass2
+        file_p2=MFTaQC_${run}_apass2
+        papermill -p _period $period -p _run $run -p _pass apass2 notebook_aQC_singlePass.ipynb ${file_p2}.ipynb
+        jupyter nbconvert --to html ${file_p2}.ipynb --no-input
+        rm -r ${file_p2}.ipynb
+        mv ${file_p2}.html Results/${period}/notebook_singlePass/${run}_apass2.html
+        # comparison of the two passes
+        mkdir -p Results/${period}/notebook_compPasses/
+        file=MFTaQC_${run}_apass1_vs_apass2
+        papermill -p _period $period -p _run $run -p _pass1 apass1 -p _pass2 apass2 notebook_aQC_compPasses.ipynb ${file}.ipynb
+        jupyter nbconvert --to html ${file}.ipynb --no-input
+        rm -r ${file}.ipynb
+        mv ${file}.html Results/${period}/notebook_compPasses/${run}_apass1_vs_apass2.html
     fi
     #if (( $n == 4 )) ; then
     #    break
