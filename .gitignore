@@ -1,3 +1,6 @@
 # Ignore any root and html files
 *.root
 *.html
+
+# Folders to ignore:
+Documents/
