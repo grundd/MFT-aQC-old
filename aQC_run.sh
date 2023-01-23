@@ -8,6 +8,6 @@ pass1="apass1"
 pass2="apass2"
 run=526647
 
-papermill -p _period $period -p _run $run notebook_aQC_compPasses.ipynb MFTaQC_${run}_${pass}_vs_${pass}.ipynb
-jupyter nbconvert --to html MFTaQC_${run}_${pass}_vs_${pass}.ipynb --no-input
+papermill -p _period $period -p _run $run notebook_aQC_compPasses.ipynb MFTaQC_${run}_${pass1}_vs_${pass2}.ipynb
+jupyter nbconvert --to html MFTaQC_${run}_${pass1}_vs_${pass2}.ipynb --no-input
 

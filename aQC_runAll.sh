@@ -3,8 +3,8 @@
 # to run it do (inside ali shell):
 # ./aQC_run.sh
 
-inputFile='LHC22o_apass2_O2-3496.txt'
-#root -q 'aQC.cxx("'$inputFile'")'
+inputFile='LHC22o_apass2_O2-3496_group2.txt'
+root -q 'aQC.cxx("'$inputFile'")'
 
 n=1 
 period=""
